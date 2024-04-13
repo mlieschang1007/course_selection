@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Course Registration</title>
+</head>
+<body>
+    <h1>Welcome to the University Course Registration System</h1>
+    <h2>Add Course</h2>
+    <form method="POST" action="/add_course">
+        Student ID: <input type="text" name="student_id" required><br>
+        Course ID: <input type="text" name="course_id" required><br>
+        <input type="submit" value="Add Course">
+    </form>
+
+    <h2>Drop Course</h2>
+    <form method="POST" action="/drop_course">
+        Student ID: <input type="text" name="student_id" required><br>
+        Course ID: <input type="text" name="course_id" required><br>
+        <input type="submit" value="Drop Course">
+    </form>
+
+    <h2>View Courses</h2>
+    <a href="/list_courses">View Available Courses</a>
+</body>
+</html>
