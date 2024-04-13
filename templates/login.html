@@ -1,68 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>University Course Registration</title>
     <style>
-        body {
-            font-family: Arial, sans-serif; 
-            background-color: #f4f4f9;
-            background-size: cover; 
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-		h1 {
-            position: absolute;
-            top: 0; 
-            width: 100%;  
-            background-color: #af3d3d; 
-            color: white;  
-            text-align: center; /* Centers the text */
-            margin-top: 0; /* No top margin */
-            padding: 70px 0; /* Padding above and below the text */
-        }
-        form, .error {
-            margin-top: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        input[type=text], input[type=submit] {
-            width: 100%; 
-            padding: 8px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type=submit] {
-            background-color: #af4c4c; 
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        input[type=submit]:hover {
-            background-color: #923e3e; 
-        }
-        .error {
-            color: rgb(232, 128, 128);
-            font-size: 16px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      h1 {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background-color: #af3d3d;
+        color: white;
+        text-align: center; /* Centers the text */
+        margin-top: 0; /* No top margin */
+        padding: 70px 0; /* Padding above and below the text */
+      }
+      form,
+      .error {
+        margin-top: 20px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      input[type="text"],
+      input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      input[type="submit"] {
+        background-color: #af4c4c;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #923e3e;
+      }
+      .error {
+        color: rgb(232, 128, 128);
+        font-size: 16px;
+      }
+      img {
+        max-width: 200px;
+        height: auto; /* 讓圖片的高度自動調整，保持原始比例 */
+        position: relative;
+        right: 650px;
+        bottom: 200px;
+      }
+      body {
+        background-image: url("./218.jpg"); /* 背景圖片的路徑 */
+        background-size: cover; /* 使背景圖片填滿整個瀏覽器視窗 */
+        background-position: center; /* 將背景圖片置中 */
+      }
+      form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px; /* 可以根據需要調整表單的寬度 */
+        text-align: center; /* 將表單內容置中 */
+      }
+      form input[type="text"] {
+        font-size: 20px; /* 調整文字大小 */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <img src="./Feng_Chia_University_Logo.svg.png" />
     <h1>Welcome to the University Course Registration System</h1>
     <form method="POST" action="/login">
-        Student ID: <input type="text" name="student_id" required><br>
-        <input type="submit" value="Login">
-        {% if error %}
-            <div class="error">{{ error }}</div>
-        {% endif %}
+      Student ID: <input type="text" name="student_id" required /><br />
+      <input type="submit" value="Login" />
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
     </form>
-</body>
+  </body>
 </html>
