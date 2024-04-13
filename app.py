@@ -62,8 +62,12 @@ def index():
 
         for course in courses:
             course['enrolled'] = course['course_id'] in enrolled_courses
+        # 計算已選課程的學分總和
+        cursor.execute("SELECT SUM(c.credits) as total_credits FROM courses c JOIN enrollments e ON c.course_id = e.course_id WHERE e.student_id = %s", (student_id,))
+        total_credits = cursor.fetchone()['total_credits'] or 0
 
-        return render_template('index.html', student_id=student_id, courses=courses)
+        return render_template('index.html', student_id=student_id, courses=courses, total_credits=total_credits)
+
     return "加載課程出錯或未找到學生系部"
 
 

@@ -17,7 +17,7 @@ CREATE TABLE courses (
 CREATE TABLE enrollments (
     enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT,
-    watching BOOLEAN NOT NULL DEFAULT FALSE
+    watching BOOLEAN NOT NULL DEFAULT FALSE,
     course_id INT,
     FOREIGN KEY (student_id) REFERENCES students(student_id),
     FOREIGN KEY (course_id) REFERENCES courses(course_id)
