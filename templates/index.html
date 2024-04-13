@@ -4,24 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Course Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            top: 0; 
+            width: 100%;  
+            background-color: #ad2b2b; 
+            color: white;  
+            text-align: center; /* Centers the text */
+            margin-top: 0; /* No top margin */
+            padding: 20px 0; /* Padding above and below the text */
+        }
+        form {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            justify-content: end;
+        }
+        input[type=text], input[type=submit] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type=submit] {
+            color: white;
+            background-color: #af4c4c;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #923e3e;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to the University Course Registration System</h1>
-    <h2>Add Course</h2>
-    <form method="POST" action="/add_course">
-        Student ID: <input type="text" name="student_id" required><br>
-        Course ID: <input type="text" name="course_id" required><br>
-        <input type="submit" value="Add Course">
-    </form>
+    <p>學生 ID: {{ student_id }}</p>
 
-    <h2>Drop Course</h2>
-    <form method="POST" action="/drop_course">
-        Student ID: <input type="text" name="student_id" required><br>
-        Course ID: <input type="text" name="course_id" required><br>
-        <input type="submit" value="Drop Course">
-    </form>
-
-    <h2>View Courses</h2>
-    <a href="/list_courses">View Available Courses</a>
+    <h2>可選課程</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>課程ID</th>
+                <th>課程名稱</th>
+                <th>上課時間</th>
+                <th>必修/選修</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.course_id }}</td>
+                <td>{{ course.course_name }}</td>
+                <td>{{ course.course_time }}</td>
+                {% if course.is_required %}
+                    <td>必修</td>
+                {% else %}
+                    <td>選修</td>
+                {% endif %}
+                <td>
+                    {% if course.enrolled %}
+                        <form method="POST" action="/drop_course">
+                            <input type="hidden" name="course_id" value="{{ course.course_id }}">
+                            <input type="submit" value="退選">
+                        </form>
+                        {% elif not course.full %}
+                        <form method="POST" action="/add_course">
+                            <input type="hidden" name="course_id" value="{{ course.course_id }}">
+                            <input type="submit" value="加選">
+                        </form>
+                    {% else %}
+                        <form method="POST" action="/watch_course">
+                            <input type="hidden" name="course_id" value="{{ course.course_id }}">
+                            <input type="submit" value="關注">
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>View Course</h2>
+<form method="POST" action="/view_courses">
+    <input type="submit" value="view corse">
+</form>
+    <br>
+    <a href="/logout">登出</a>
 </body>
 </html>
